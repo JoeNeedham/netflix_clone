@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div`
 display: flex;
-padding: 70px 56px;
+padding: 70px 0;
 margin: auto;
 max-width: 1000px;
 flex-direction: column;
@@ -16,11 +16,12 @@ export const Column = styled.div`
 display: flex;
 flex-direction: column;
 text-align: left; 
+align-items: center;
 `;
 
 export const Row = styled.div`
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 grid-gap: 15px;
 
 @media (max-width: 1000px) {
@@ -31,7 +32,7 @@ grid-gap: 15px;
 export const Link = styled.a`
 color: #757575;
 margin-bottom: 20px;
-font-size: 13px;
+font-size: 14px;
 text-decoration: none;
 `;
 
@@ -49,4 +50,5 @@ export const Title = styled.p`
     font-size: 16px;
     color: #757575;
     margin-bottom: 40px;
+    align-self: center
 `;
