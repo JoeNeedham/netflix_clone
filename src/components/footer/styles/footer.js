@@ -38,7 +38,9 @@ text-decoration: none;
 
 export const Text = styled.p`
 font-size: 13px;
-color: #757575
+color: #757575;
+margin-bottom: 40px;
+margin-left: 50px
 `;
 
 export const Break = styled.div`

@@ -1,6 +1,6 @@
-import { initializeApp } from 'firebase/app';
-// import { getFirestore } from 'firebase/firestore'
-// import 'firebase/auth';
+import Firebase from 'firebase/compat/app'
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
 import { seedDatabase } from '../seed';
 
 
@@ -13,8 +13,8 @@ const config = {
     appId: "1:964123523246:web:304bf2123ea0ba8060953f"
 };
 
-const App = initializeApp(config);
+const firebase = Firebase.initializeApp(config);
 
-seedDatabase(App);
+// seedDatabase(firebase); do not uncomment
 
-export { App };
+export { firebase };
