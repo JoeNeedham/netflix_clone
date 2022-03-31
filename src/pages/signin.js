@@ -1,23 +1,36 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FirebaseContext } from '../context/firebase';
 import { FooterContainer } from '../containers/footer';
 import { HeaderContainer } from '../containers/header';
 import { Form } from '../components';
+import * as ROUTES from '../constants/routes';
 
 
 export default function Signin() {
+    const navigate = useNavigate()
     const { firebase } = useContext(FirebaseContext)
     const [emailAddress, setEmailAddress] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
     const isInvalid = password === '' || emailAddress === '';
-    const handleSignIn = (event) => {
-        event.preventDefault();
-    }
-
-    // check form input elements are valid
-    // email & password 
+    
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        // firebase work here!
+        return firebase
+            .auth()
+            .signInWithEmailAndPassword(emailAddress, password)
+            .then(() => {
+                navigate(ROUTES.BROWSE);
+            })
+            .catch((error) => {
+                setEmailAddress('');
+                setPassword('');
+                setError(error.message);
+            });
+    };
 
     return (
     <>
@@ -34,8 +47,8 @@ export default function Signin() {
                     />
                     <Form.Input
                         placeholder="Password"
-                        autoComplete="off"
-                        type="Password"
+                        // autoComplete="off"
+                        type="password"
                         value={password}
                         onChange={({ target }) => setPassword(target.value)}
                     />
