@@ -1,7 +1,9 @@
 import React from 'react'
+import { useContent } from '../hooks';
+import selectionFilter from '../utils/selection-filter';
 
 export default function Browse() {
-    return (
-        <div>Hello from the browse!</div>
-    )
+    const { series } = useContent('series');
+    const { films } = useContent('films');
+    return (null)
 }
