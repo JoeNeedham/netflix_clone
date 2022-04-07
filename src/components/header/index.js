@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import {
     Background,
     Container,
+    HLink,
     Logo,
+    Group,
     ButtonLink,
     Feature,
     FeatureCallOut,
@@ -24,6 +26,10 @@ Header.Frame = function HeaderFrame({ children, ...restProps }) {
     return <Container { ...restProps}>{children}</Container>;
 };
 
+Header.Group = function HeaderGroup({ children, ...restProps }) {
+    return <Group { ...restProps}>{children}</Group>;
+};
+
 Header.FeatureCallOut = function HeaderFeatureCallOut({ children, ...restProps }) {
     return <FeatureCallOut { ...restProps}>{children}</FeatureCallOut>
 };
@@ -33,7 +39,7 @@ Header.Text = function HeaderText({ children, ...restProps }) {
 };
 
 Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
-    return <TextLink { ...restProps}>{children}</TextLink>;
+    return <HLink { ...restProps}>{children}</HLink>;
 };
 
 
