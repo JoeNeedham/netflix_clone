@@ -7,6 +7,9 @@ import {
     HLink,
     Logo,
     Group,
+    Picture,
+    Profile,
+    Dropdown,
     ButtonLink,
     Feature,
     FeatureCallOut,
@@ -32,6 +35,19 @@ Header.Group = function HeaderGroup({ children, ...restProps }) {
 
 Header.FeatureCallOut = function HeaderFeatureCallOut({ children, ...restProps }) {
     return <FeatureCallOut { ...restProps}>{children}</FeatureCallOut>
+};
+
+Header.Profile = function HeaderProfile({ children, ...restProps }) {
+    return <Profile { ...restProps}>{children}</Profile>
+};
+
+
+Header.Picture = function HeaderPicture({ src, ...restProps }) {
+    return <Picture { ...restProps} src={`/images/users/${src}.png`} />;
+};
+
+Header.Dropdown = function HeaderDropdown({ children, ...restProps }) {
+    return <Dropdown { ...restProps}>{children}</Dropdown>;
 };
 
 Header.Text = function HeaderText({ children, ...restProps }) {
