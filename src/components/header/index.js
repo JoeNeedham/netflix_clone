@@ -8,6 +8,7 @@ import {
     Logo,
     Group,
     Picture,
+    PlayButton,
     Profile,
     Dropdown,
     ButtonLink,
@@ -80,6 +81,10 @@ Header.Text = function HeaderText({ children, ...restProps }) {
 Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
     return <HLink { ...restProps}>{children}</HLink>;
 };
+
+Header.PlayButton = function HeaderPlayButton({ children, ...restProps }) {
+    return <PlayButton { ...restProps}>{children}</PlayButton>
+}
 
 
 Header.ButtonLink = function Link({ children, ...restProps }) {
