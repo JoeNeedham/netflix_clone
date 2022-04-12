@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
 import { FirebaseContext } from '../context/firebase';
 
+// pulls from 'use-content' file in hooks folder.
+
 export default function useContent(target) {
     const [content, setContent] = useState([]);
     const { firebase } = useContext(FirebaseContext);
@@ -21,7 +23,7 @@ export default function useContent(target) {
             .catch((error) => {
                 console.log(error.message);
             });
-    }, []);
+    },);
 
     return { [target]: content }
 }

@@ -1,17 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SelectProfileContainer } from "./profiles";
 import { FirebaseContext } from "../context/firebase";
-import { Loading } from '../components';
-import { Header } from "../components";
+import { Loading, Header, Card } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 
 export function BrowseContainer({ slides }) {
+    const [category, setCategory] = useState('series');
     const [searchTerm, setSearchTerm] = useState('');
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
+    const [slideRows, setSlideRows] = useState([]);
+
     const { firebase } = useContext(FirebaseContext);
     const user = firebase.auth().currentUser  || {};
+
+    useEffect(() => {
+        setSlideRows(slides[category]);
+    }, [slides, category]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -27,8 +33,18 @@ export function BrowseContainer({ slides }) {
                     <Header.Group>
                         <Header.Logo to={ROUTES.HOME} src={logo}
                         alt="Netflix" />
-                        <Header.TextLink>Series</Header.TextLink>
-                        <Header.TextLink>Films</Header.TextLink>
+                        <Header.TextLink
+                            active={category === 'series' ? 'true' : 'false'}
+                            onClick={() => setCategory('series')}
+                        >   
+                            Series
+                        </Header.TextLink>
+                        <Header.TextLink
+                            active={category === 'films' ? 'true' : 'false'}
+                            onClick={() => setCategory('films')}
+                        >
+                            Films
+                        </Header.TextLink>
                     </Header.Group>
                     <Header.Group>
                         <Header.Search
@@ -59,6 +75,23 @@ export function BrowseContainer({ slides }) {
                     <Header.PlayButton>Play</Header.PlayButton>
                 </Header.Feature>
             </Header>
+
+            <Card.Group>
+                {slideRows.map((slideItem) => (
+                    <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+                        <Card.Title>{slideItem.title}</Card.Title>
+                        <Card.Entities>
+                            {slideItem.data.map((item) => (
+                                <Card.Item key={item.docId} item={item}>
+                                    <Card.Image
+                                        src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                                    />
+                                </Card.Item>
+                            ))}
+                        </Card.Entities>
+                    </Card>
+                ))}
+            </Card.Group>
         </>
     ) : (
         <SelectProfileContainer user={user} setProfile={setProfile} />
