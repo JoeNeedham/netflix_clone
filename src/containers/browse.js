@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Fuse from 'fuse.js';
 import { SelectProfileContainer } from "./profiles";
 import { FooterContainer } from './footer';
 import { FirebaseContext } from "../context/firebase";
@@ -25,6 +26,8 @@ export function BrowseContainer({ slides }) {
             setLoading(false);
         }, 3000);
     }, [profile.displayName]);
+
+
 
     return profile.displayName ? (
         <>
